@@ -14,6 +14,7 @@
         (is (= true  (falsey? item)))
         (is (= false (truthy? item))) ))))
 
+
 (deftest test-any
   (is (= true   (any? identity [1])))
   (is (= true   (any? identity [1 nil])))
@@ -37,10 +38,11 @@
   (is (= true   (any? {2 "two" 3 "three"} [nil 3 2]) ))
 
   (is (= true   (any? #{2}   (range 0 10)) ))
-  (is (= false  (any? #{200} (range 0 10)) ))
-
-  )
-   
+  (is (= false  (any? #{200} (range 0 10)) )) )
 
 
-  
+(deftest test-conjv
+  (is (=       (conjv  [1 2 3] 4) [1 2 3 4] ))
+  (is (=       (conjv '(1 2 3) 4) [1 2 3 4] ))
+  (is (vector? (conjv '(1 2 3) 4))) )
+
