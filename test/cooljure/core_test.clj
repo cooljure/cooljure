@@ -2,7 +2,7 @@
   (:require [clojure.test  :refer :all]
             [cooljure.core :refer :all] ))
 
-(deftest test-truthy-falsey
+(deftest tst-truthy-falsey
   (testing "truthy items"
     (let [truthy-items [ 0 1 2.3 "abc" \a :any-key true {} [] (list) ]]
       (doseq [item truthy-items]
@@ -12,10 +12,9 @@
     (let [falsey-items [ false nil ]]
       (doseq [item falsey-items]
         (is (= true  (falsey? item)))
-        (is (= false (truthy? item))) ))))
+        (is (= false (truthy? item))) ))) )
 
-
-(deftest test-any
+(deftest tst-any?
   (is (= true   (any? identity [1])))
   (is (= true   (any? identity [1 nil])))
   (is (= true   (any? identity [nil 1])))
@@ -40,9 +39,17 @@
   (is (= true   (any? #{2}   (range 0 10)) ))
   (is (= false  (any? #{200} (range 0 10)) )) )
 
+(deftest tst-not-empty?
+  (is (= false (not-empty? '())))
+  (is (= true  (not-empty? '(1))))
+  (is (= false (not-empty? "")))
+  (is (= true  (not-empty? "abc")))
+  (is (= true  (every? not-empty? ["1" [1] '(1) {:1 1} #{1}]) ))
+  (is (= true  (every?     empty? [""  [ ] '( ) {    } #{ }]) ))
+  )
 
-(deftest test-conjv
-  (is (=       (conjv  [1 2 3] 4) [1 2 3 4] ))
-  (is (=       (conjv '(1 2 3) 4) [1 2 3 4] ))
+(deftest tst-conjv
+  (is (=       (conjv  [1 2 3] 4)  [1 2 3 4] ))
+  (is (=       (conjv '(1 2 3) 4)  [1 2 3 4] ))
   (is (vector? (conjv '(1 2 3) 4))) )
 
