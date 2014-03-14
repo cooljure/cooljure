@@ -4,10 +4,14 @@
 
 (deftest tst-truthy-falsey
   (testing "truthy items"
-    (let [truthy-items [ 0 1 2.3 "abc" \a :any-key true {} [] (list) ]]
+    (let [truthy-items [ 0 1 2.3 "abc" \a :any-key [] (list) {} #{} #"regex.*" 
+                         true :true  "true"  [true]
+                              :false "false" [false] 
+                              :nil   "nil"   [nil]   ]]
       (doseq [item truthy-items]
         (is (= true  (truthy? item)))
         (is (= false (falsey? item))) )))
+
   (testing "falsey items"
     (let [falsey-items [ false nil ]]
       (doseq [item falsey-items]
