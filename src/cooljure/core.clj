@@ -1,16 +1,16 @@
 (ns cooljure.core)
 
 (defn truthy?
-  "Returns true if argument is logical true (neither nil nor false);
+  "Returns true if arg is logical true (neither nil nor false);
   otherwise returns false."
   [arg]
   (if arg true false) )
 
 (defn falsey?
-  "Returns true if argument is logical false (either nil or false);
-  otherwise returns false. Synonymous with clojure.core/not."
+  "Returns true if arg is logical false (either nil or false);
+  otherwise returns false. Equivalent to (not (truthy? arg))."
   [arg]
-  (if arg false true) )
+  (if arg false true) )  ; Synonymous with clojure.core/not.
 
 (defn any?
   "Returns true if (pred x) is logical true for any x in coll; otherwise returns false.
@@ -20,12 +20,12 @@
 
 (defn not-empty?
   "Returns false if coll contains no items; otherwise returns true.
-  Same as (truthy? (seq coll))."
+  Equivalent to (not (empty? coll))."
   [coll]
   (truthy? (seq coll)) )
 
 (defn conjv 
-  "Appends to a collection, always returning a vector."
+  "Appends item to collection, always returning a vector."
   ; From Stuart Sierra post 2014-2-10
   [coll item]
   (conj (vec coll) item) )

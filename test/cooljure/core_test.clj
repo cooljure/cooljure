@@ -50,10 +50,13 @@
   (is (= true  (not-empty? "abc")))
   (is (= true  (every? not-empty? ["1" [1] '(1) {:1 1} #{1}]) ))
   (is (= true  (every?     empty? [""  [ ] '( ) {    } #{ }]) ))
-  )
+)
 
 (deftest tst-conjv
-  (is (=       (conjv  [1 2 3] 4)  [1 2 3 4] ))
-  (is (=       (conjv '(1 2 3) 4)  [1 2 3 4] ))
-  (is (vector? (conjv '(1 2 3) 4))) )
+  (is (=       (conjv  [1 2 3] 4)    [1 2 3 4] ))
+  (is (=       (conjv '(1 2 3) 4)    [1 2 3 4] ))
+  (is (vector? (conjv '(1 2 3) 4))) 
+  (is (=       (conjv  [1 2] [3 4] ) [1 2 [3 4]] ))
+    ; conjv does not flatten results 
+)
 
